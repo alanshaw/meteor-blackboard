@@ -32,6 +32,10 @@ Meteor.startup(function() {
 		from = to;
 	});
 	
+	$('input').click(function() {
+		Lines.remove({});
+	});
+	
 	function drawLine(ctx, from, to) {
 		if(!from) return;
 		ctx.beginPath();
