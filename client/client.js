@@ -45,20 +45,18 @@ Meteor.startup(function() {
 		ctx.stroke();
 	}
 	
-	function clearCanvas(ctx) {
+	function wipe(ctx) {
 		ctx.fillRect(0, 0, canvas.width(), canvas.height());
 	}
 	
 	ctx.strokeStyle = '#ffffff';
 	ctx.fillStyle = '#000000';
 	
-	clearCanvas(ctx);
-	
 	Meteor.autorun(function() {
 		
-		clearCanvas(ctx);
+		wipe(ctx);
 		
-		Lines.find().fetch().forEach(function(line) {
+		Lines.find().forEach(function(line) {
 			drawLine(ctx, line.from, line.to);
 		});
 	});
