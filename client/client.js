@@ -42,8 +42,13 @@ Meteor.startup(function() {
 	}
 	
 	function clearCanvas(ctx) {
-		ctx.clearRect(0, 0, canvas.width(), canvas.height());
+		ctx.fillRect(0, 0, canvas.width(), canvas.height());
 	}
+	
+	ctx.strokeStyle = '#ffffff';
+	ctx.fillStyle = '#000000';
+	
+	clearCanvas(ctx);
 	
 	Meteor.autorun(function() {
 		
