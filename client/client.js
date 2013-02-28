@@ -23,8 +23,6 @@ Meteor.startup(function() {
 		
 		if(!drawing) return;
 		
-		event.preventDefault();
-		
 		var to = {x: parseInt(event.gesture.center.pageX), y: parseInt(event.gesture.center.pageY)};
 		
 		drawLine(ctx, from, to);
