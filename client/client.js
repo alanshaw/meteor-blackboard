@@ -3,17 +3,17 @@ Meteor.startup(function() {
 	var canvas = $('canvas'),
 		ctx = canvas[0].getContext('2d'),
 		drawing = false,
-		from = null;
+		from;
 		
 	canvas.attr({
 		
 		width: $(window).width(),
 		height: $(window).height()
 		
-	}).mousedown(function() {
+	}).mousedown(function(event) {
 		
 		drawing = true;
-		from = null;
+		from = {x: parseInt(event.pageX), y: parseInt(event.pageY)};
 		
 	}).mouseup(function() {
 		
@@ -37,7 +37,6 @@ Meteor.startup(function() {
 	});
 	
 	function drawLine(ctx, from, to) {
-		if(!from) return;
 		ctx.beginPath();
 		ctx.moveTo(from.x, from.y);
 		ctx.lineTo(to.x, to.y);
