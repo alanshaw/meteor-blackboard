@@ -4,26 +4,28 @@ Meteor.startup(function() {
 		ctx = canvas[0].getContext('2d'),
 		drawing = false,
 		from;
-		
+	
 	canvas.attr({
 		
 		width: $(window).width(),
 		height: $(window).height()
 		
-	}).mousedown(function(event) {
+	}).hammer().on('dragstart', function(event) {
 		
 		drawing = true;
-		from = {x: parseInt(event.pageX), y: parseInt(event.pageY)};
+		from = {x: parseInt(event.gesture.center.pageX), y: parseInt(event.gesture.center.pageY)};
 		
-	}).mouseup(function() {
+	}).on('dragend', function() {
 		
 		drawing = false;
 		
-	}).mousemove(function(event) {
+	}).on('drag', function(event) {
 		
 		if(!drawing) return;
 		
-		var to = {x: parseInt(event.pageX), y: parseInt(event.pageY)};
+		event.preventDefault();
+		
+		var to = {x: parseInt(event.gesture.center.pageX), y: parseInt(event.gesture.center.pageY)};
 		
 		drawLine(ctx, from, to);
 		
@@ -59,4 +61,9 @@ Meteor.startup(function() {
 			drawLine(ctx, line.from, line.to);
 		});
 	});
+	
+	// Stop iOS from doing the bounce thing with the screen
+	document.ontouchmove = function(event){
+		event.preventDefault();
+	}
 });
