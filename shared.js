@@ -1,1 +1,1 @@
-var Lines = new Meteor.Collection('lines');
+Lines = new Meteor.Collection('lines');
