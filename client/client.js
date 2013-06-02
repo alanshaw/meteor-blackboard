@@ -33,7 +33,7 @@ Meteor.startup(function() {
 	});
 	
 	$('input').click(function() {
-		Meteor.call("wipeClean");
+		Meteor.call('wipeClean');
 	});
 	
 	function drawLine(ctx, from, to) {
